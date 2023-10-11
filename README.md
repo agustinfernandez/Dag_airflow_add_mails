@@ -5,17 +5,16 @@ DAG to consume data from diferent sources like BIG Query, transform the data and
 
 ## Starting 🚀
 
-_Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
+_That's a practical solution to add mails to one excel file. 
+If you want, you can implement AirflowSensors to "Hear" one path and consume that file when the user leaves it here._
 
 ## Construido con 🛠️
 
-_Menciona las herramientas que utilizaste para crear tu proyecto_
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - El framework web usado
-* [Maven](https://maven.apache.org/) - Manejador de dependencias
-* [ROME](https://rometools.github.io/rome/) - Usado para generar RSS
+* [Airflow](https://airflow.apache.org/docs/apache-airflow/2.4.0/search.html?q=google) 
+
 
 
 ## Autors ✒️
 
-* ** Agustín Fernández** - *Trabajo Inicial* - [villanuevand](https://github.com/villanuevand)
+* ** Agustín Fernández** 
