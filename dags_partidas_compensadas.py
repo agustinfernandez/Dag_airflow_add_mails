@@ -38,7 +38,7 @@ def extraer_tabla_bq(**kwargs):
 
     """
     with previo as(select distinct cuit as CUIT, mail
-    from `BasesProcesadas.MailsValidos`
+    from ``
     where cuit != "0"),
 
     enumeracion as(select *, concat("Mail",row_number() over(partition by cuit))Mails 
