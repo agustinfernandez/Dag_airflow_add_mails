@@ -13,7 +13,6 @@ default_args = {
     
 }
 
-#ruta = "/z_disk/Seguros/GR_PRODUCTO (PUBLICA)/Datos/Datos al DW/PartidasCompensadas"
 pd.options.display.max_columns = None
 
 
@@ -23,10 +22,10 @@ def levantar_archivo(ruta, **kwargs):
     files = os.listdir(ruta)
     file = [archivo for archivo in files if archivo.endswith('.xlsx')]
     file = file[0]
-    tabla_partidas =pd.read_excel(f"/z_disk/Seguros/GR_PRODUCTO (PUBLICA)/Datos/Datos al DW/PartidasCompensadas/{file}")  
-    tabla_partidas.columns = ["SINIESTRO","MONTO","BENEFICIARIO","CUIT" ,"EN CASO PAGO A 3RO","FECHA DE PAGO","Centro de beneficio"]
+    tabla_partidas =pd.read_excel(f"/{file}")  
+    tabla_partidas.columns = []#Change columns names
     tabla_partidas = tabla_partidas[["CUIT"]]
-    # Convertir el DataFrame a JSON
+    # Transform df to JSON
     tabla_partidas_json = tabla_partidas.to_json(orient='split', index=False)
 
     ti.xcom_push(key = "tablas_partidas" ,value=tabla_partidas_json)
@@ -34,7 +33,7 @@ def levantar_archivo(ruta, **kwargs):
 
 def extraer_tabla_bq(**kwargs):
     ti = kwargs['ti']    
-    client = bigquery.Client('superviellesegurosdatos')
+    client = bigquery.Client('')
     query_job = client.query(
 
     """
@@ -88,12 +87,12 @@ def cruce_tablas(**kwargs):
 
 def guardo_csv_muevo_archivos(resultado):
 
-    files = os.listdir("/z_disk/Seguros/GR_PRODUCTO (PUBLICA)/Datos/Datos al DW/PartidasCompensadas")
+    files = os.listdir("")
     archivos_xlsx = [archivo for archivo in files if archivo.endswith('.xlsx')]
     archivos_xlsx = archivos_xlsx[0]
     file = archivos_xlsx.replace(".xlsx", "")
-    resultado.to_excel(f"/z_disk/Seguros/GR_PRODUCTO (PUBLICA)/Datos/Datos al DW/PartidasCompensadas/output_mails/{file}_mails.xlsx")
-    os.rename = (file, "/z_disk/Seguros/GR_PRODUCTO (PUBLICA)/Datos/Datos al DW/PartidasCompensadas/archivos_originales/")
+    resultado.to_excel(f"")
+    os.rename = (file, "")
      
     
 
@@ -105,7 +104,7 @@ with DAG(dag_id='partidas_compensadas',
         task1 = PythonOperator(
         task_id='Levanto_partidas',
         python_callable=levantar_archivo,
-        op_args =["/z_disk/Seguros/GR_PRODUCTO (PUBLICA)/Datos/Datos al DW/PartidasCompensadas"],
+        op_args =[""],
         dag=dag,
         )
 
